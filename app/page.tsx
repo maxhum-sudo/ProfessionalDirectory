@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getUser } from '@/lib/auth'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { Button } from '@/components/ui/Button'
+import { FAQ } from '@/components/FAQ'
 
 export default async function Home() {
   const user = await getUser()
@@ -20,8 +21,9 @@ export default async function Home() {
   const isComplete = user && profile?.survey_completed
 
   return (
-    <div className="min-h-[calc(100vh-200px)] flex flex-col items-center justify-center py-12 px-4">
-      <div className="max-w-2xl text-center space-y-8">
+    <div className="flex flex-col items-center py-12 px-4">
+      {/* Hero */}
+      <div className="max-w-2xl text-center space-y-8 mb-16">
         <div className="space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight">
             Calgary&apos;s remote worker network
@@ -44,6 +46,11 @@ export default async function Home() {
             </Button>
           </Link>
         )}
+      </div>
+
+      {/* FAQs */}
+      <div className="w-full pt-12 border-t border-gray-200">
+        <FAQ />
       </div>
     </div>
   )
