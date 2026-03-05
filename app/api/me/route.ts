@@ -1,79 +1,17 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import {
+  validateName,
+  validateHeadline,
+  validateRole,
+  validateDomains,
+  validateOffering,
+  validateSeeking,
+  validateContactLink,
+  validateAvatarUrl,
+  normalizeContactLink,
+} from '@/lib/validation'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
-
-// Validation rules for updatable fields
-const validateName = (name: string): string | null => {
-  if (name.trim().length === 0) return 'Name is required'
-  if (name.length > 100) return 'Name must be 100 characters or less'
-  return null
-}
-
-const validateHeadline = (headline: string): string | null => {
-  if (headline.length > 150) return 'Headline must be 150 characters or less'
-  return null
-}
-
-const validateRole = (role: string): string | null => {
-  const validRoles = [
-    'Founder / Co-founder',
-    'Operator / Executive',
-    'Software Developer / Engineer',
-    'Designer (Product / Brand / UX)',
-    'Marketer / Growth',
-    'Consultant / Advisor',
-    'Investor / Angel',
-    'Freelancer / Contractor',
-    'Researcher / Analyst',
-    'Educator / Coach',
-    'Other',
-  ]
-  if (!validRoles.includes(role)) return 'Invalid role'
-  return null
-}
-
-const validateDomains = (domains: string[]): string | null => {
-  if (!Array.isArray(domains)) return 'Domains must be an array'
-  if (domains.length > 5) return 'Maximum 5 domains allowed'
-  for (const domain of domains) {
-    if (typeof domain !== 'string' || domain.trim().length === 0) {
-      return 'Each domain must be a non-empty string'
-    }
-  }
-  return null
-}
-
-const validateOffering = (offering: string): string | null => {
-  if (offering.length > 280) return 'Offering must be 280 characters or less'
-  return null
-}
-
-const validateSeeking = (seeking: string): string | null => {
-  if (seeking.length > 280) return 'Seeking must be 280 characters or less'
-  return null
-}
-
-const validateContactLink = (contactLink: string): string | null => {
-  if (contactLink.trim().length === 0) return 'Contact link is required'
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (emailRegex.test(contactLink.trim())) return null
-  try {
-    new URL(contactLink)
-    return null
-  } catch {
-    return 'Please provide a valid URL or email address'
-  }
-}
-
-const validateAvatarUrl = (avatarUrl: string): string | null => {
-  if (avatarUrl.trim().length === 0) return 'Avatar URL must not be empty'
-  try {
-    new URL(avatarUrl)
-    return null
-  } catch {
-    return 'Avatar URL must be a valid URL'
-  }
-}
 
 export async function PATCH(request: Request) {
   const supabase = await createServerSupabaseClient()
@@ -165,12 +103,8 @@ export async function PATCH(request: Request) {
     )
   }
 
-  // Normalize email contact links
   if (body.contact_link !== undefined) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (emailRegex.test(body.contact_link.trim())) {
-      body.contact_link = `mailto:${body.contact_link.trim()}`
-    }
+    body.contact_link = normalizeContactLink(body.contact_link)
   }
 
   // Build update object - only include provided fields

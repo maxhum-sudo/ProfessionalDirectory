@@ -1,11 +1,11 @@
-import { getSession } from '@/lib/auth'
+import { getUser } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import SurveyClient from './SurveyClient'
 
 export default async function SurveyPage() {
-  const session = await getSession()
+  const user = await getUser()
 
-  if (!session) {
+  if (!user) {
     redirect('/auth/login')
   }
 

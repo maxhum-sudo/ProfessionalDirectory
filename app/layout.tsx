@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-50">
+      <body className="bg-gray-50" suppressHydrationWarning>
         <ToastProvider>
           <Nav />
           <main className="max-w-6xl mx-auto px-4 py-8">
