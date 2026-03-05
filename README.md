@@ -4,7 +4,7 @@ A professional directory application built with modern web technologies.
 
 ## Tech Stack
 
-- **Next.js 14** - React framework for production
+- **Next.js 15** - React framework for production
 - **TypeScript** - Type-safe JavaScript
 - **Tailwind CSS** - Utility-first CSS framework
 - **Supabase** - Backend as a Service (authentication & database)
@@ -60,8 +60,16 @@ Create a `.env.local` file in the root directory:
 ```
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+## Deployment
+
+**Production URL:** https://theprofessionaldirectory.vercel.app
+
+Deployed on Vercel. Ensure `NEXT_PUBLIC_SITE_URL` is set to the production URL in Vercel's environment variables, and add `https://theprofessionaldirectory.vercel.app/auth/verify` to Supabase's redirect URLs.
 
 ## Learn More
 
