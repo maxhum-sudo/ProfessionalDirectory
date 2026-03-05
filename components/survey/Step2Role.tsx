@@ -10,7 +10,7 @@ interface Step2RoleProps {
   errors: {
     role?: string
   }
-  onChange: (field: string, value: Role) => void
+  onChange: (field: 'role', value: Role) => void
 }
 
 export default function Step2Role({
@@ -23,7 +23,7 @@ export default function Step2Role({
       {/* Heading and helper */}
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-2">
-          What's your primary role?
+          What&apos;s your primary role?
         </h2>
         <p className="text-sm text-gray-600">
           Pick the one that best describes how you spend most of your working time.

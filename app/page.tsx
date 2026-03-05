@@ -24,7 +24,7 @@ export default async function Home() {
       <div className="max-w-2xl text-center space-y-8">
         <div className="space-y-4">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tight">
-            Calgary's remote worker network
+            Calgary&apos;s remote worker network
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
             A private directory of 100+ Calgary professionals working remotely. Fill out one survey to join.

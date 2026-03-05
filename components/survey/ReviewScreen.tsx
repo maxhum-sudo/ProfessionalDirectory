@@ -4,14 +4,14 @@ import React from 'react'
 import { Button } from '@/components/ui/Button'
 import { Avatar } from '@/components/ui/Avatar'
 import { Tag } from '@/components/ui/Tag'
-import { ROLE_COLORS } from '@/types'
+import { Role, ROLE_COLORS } from '@/types'
 
 interface SurveyFields {
   name: string
   headline: string
   avatar_file: File | null
   avatar_preview: string | null
-  role: any
+  role: Role | null
   domains: string[]
   offering: string
   seeking: string
@@ -37,7 +37,7 @@ export default function ReviewScreen({
     <div className="space-y-8">
       {/* Heading */}
       <h2 className="text-xl font-semibold text-gray-900 text-center">
-        Here's how you'll appear in the directory
+        Here&apos;s how you&apos;ll appear in the directory
       </h2>
 
       {/* Hidden from directory banner */}
@@ -72,7 +72,7 @@ export default function ReviewScreen({
           <div className="flex justify-center mb-4">
             <Tag
               label={fields.role}
-              color={ROLE_COLORS[fields.role] || 'bg-gray-100 text-gray-800'}
+              color={(fields.role && ROLE_COLORS[fields.role]) || 'bg-gray-100 text-gray-800'}
             />
           </div>
         )}
@@ -111,7 +111,7 @@ export default function ReviewScreen({
           {fields.seeking && (
             <div>
               <p className="font-semibold text-gray-900 mb-1">
-                I'm looking for:
+                I&apos;m looking for:
               </p>
               <p className="text-gray-700">
                 {fields.seeking}

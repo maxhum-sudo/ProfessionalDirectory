@@ -13,7 +13,7 @@ interface Step5ContactProps {
     contact_link?: string
     opted_in?: string
   }
-  onChange: (field: string, value: any) => void
+  onChange: (field: 'contact_link' | 'opted_in' | 'in_directory', value: any) => void
 }
 
 export default function Step5Contact({
@@ -82,7 +82,7 @@ export default function Step5Contact({
           htmlFor="in_directory"
           className="text-sm text-gray-700 cursor-pointer"
         >
-          I'd like to create an account but not appear in the directory yet. I can change this from my profile.
+          I&apos;d like to create an account but not appear in the directory yet. I can change this from my profile.
         </label>
       </div>
     </div>

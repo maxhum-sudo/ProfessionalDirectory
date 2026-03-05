@@ -15,7 +15,7 @@ interface Step1BasicsProps {
     name?: string
     headline?: string
   }
-  onChange: (field: string, value: any) => void
+  onChange: (field: 'name' | 'headline' | 'avatar_file' | 'avatar_preview', value: any) => void
 }
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB

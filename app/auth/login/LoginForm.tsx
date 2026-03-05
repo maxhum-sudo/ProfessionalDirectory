@@ -127,7 +127,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ error: initialError }) => 
               Sign in to Calgary Coworking
             </h1>
             <p className="text-gray-600">
-              Enter your email and we'll send you a link to sign in or create
+              Enter your email and we&apos;ll send you a link to sign in or create
               your profile.
             </p>
           </div>
@@ -158,7 +158,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ error: initialError }) => 
           </Button>
 
           <p className="text-xs text-gray-500 text-center">
-            No account? You'll create one when you click the link.
+            No account? You&apos;ll create one when you click the link.
           </p>
         </form>
 

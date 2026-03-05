@@ -11,7 +11,7 @@ interface Step3DomainsProps {
   errors: {
     domains?: string
   }
-  onChange: (field: string, value: string[]) => void
+  onChange: (field: 'domains', value: string[]) => void
 }
 
 export default function Step3Domains({
@@ -27,7 +27,7 @@ export default function Step3Domains({
           What worlds do you operate in?
         </h2>
         <p className="text-sm text-gray-600">
-          Think about industries you serve, problems you understand deeply, or communities you're part of. Pick 1 to 5.
+          Think about industries you serve, problems you understand deeply, or communities you&apos;re part of. Pick 1 to 5.
         </p>
       </div>
 
